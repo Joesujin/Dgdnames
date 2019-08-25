@@ -1,6 +1,6 @@
 class Branch { 
   float x, y, noisee, startNoise, num; 
-  float angl, scl, drawscl, col; 
+  float angl, scl, drawscl, colV,colC; 
   Branch(float _x, float _y, int _num) { 
     startNoise = num; 
     noisee = startNoise; 
@@ -9,7 +9,13 @@ class Branch {
     num = _num;
     drawscl = num*5;
     scl=10;
-    col = map(num, 7, 32, 100, 255);
+    //if (num ==7 || num ==11 || num ==15 || num==21 || num==27) {
+    //  colV = map(num, 7, 32, 50, 100);
+    //}
+    //else{
+    //  colC = map(num, 7, 32, 100, 255);
+    //}
+    colC = map(num, 7, 32, 100, 255);
   } 
   void figure() { 
     float noiseX = noise(noisee); 
@@ -30,22 +36,28 @@ class Branch {
     float noiseX = noise(noisee); 
     pushMatrix(); 
     translate(x, y); 
-    rotate(radians(noiseX*360*2)); 
+    rotate(radians(noiseX*360*num)); 
 
-    if (num ==7 || num ==11 || num ==15 || num==21 || num==27) {
-      strokeWeight(noiseX*20); 
+    if (num == -58) {
+      stroke(150);
+      strokeWeight(2);
+      line(0, 0, noiseX*35, 0);
+    } else if (num ==7 || num ==11 || num ==15 || num==21 || num==27) {
+      strokeWeight(noiseX*2); 
       //stroke(noiseX*col,255,col,15); 
-      noFill();
-      stroke(col, 255, col*2, 15); 
+      stroke(0);
+      fill(colC, 255, colC*2, 150); 
       rect(0, 0, noiseX*35, noiseX*35); 
       //line(0, 0, noiseX*35, 0);
     } else {
       noFill();
-      strokeWeight(noiseX*5); 
-      stroke(col, 255, col*2, 15); 
+      strokeWeight(noiseX*2); 
+      stroke(0);
+      fill(colC, 255, colC*2, 150); 
       ellipse(0, 0, noiseX*drawscl, noiseX*drawscl);
       strokeWeight(5); 
-      line(0,0,noiseX*drawscl,0);
+      stroke(colC, 255, colC*2);
+      //line(0,0,noiseX*drawscl,0);
     }
     //point(0,0); 
     //line(0, 0, noiseX*drawscl, 0); 

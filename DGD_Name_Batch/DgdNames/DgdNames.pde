@@ -1,3 +1,4 @@
+boolean record;
 String s, index;
 char[] c;
 int [] num;
@@ -7,34 +8,36 @@ float division;
 void setup() { 
   size(1000, 1000); 
   background(0);
-  s = "Joesujin"; 
+  s = "abcdefghijklmnopqrstuvwxyz"; 
   s = s.toLowerCase(); 
   c = new char[s.length()]; 
   num =new int[s.length()];
   //frameRate(24);
   noiseSeed(24031994);
-  division = 360/(s.length()*1);
+  division = width/(s.length()*2);
 
 
   //for (float ang=0; ang<=360; ang+=(division)) {
   //  float rad = radians(ang);
   //  float x = (width/2)+(100*cos(rad));
   //  float y = (height/2)+(100*sin(rad));
-    for (int i = 0; i < s.length(); i++) { 
-      c[i] = s.charAt(i); 
-      num[i] = int(c[i]) -90;
+  for (int i = 0; i < s.length(); i++) { 
+    c[i] = s.charAt(i); 
+    num[i] = int(c[i]) -90;
 
-      //branch.add(new Branch(x, y, num[i]));
-      println(c[i], num[i]);
+    //branch.add(new Branch(x, y, num[i]));
+    println(c[i], num[i]);
     //}
 
-    branch.add(new Branch(250+division*i, height, num[i]));
+    branch.add(new Branch((width/3)+division*i, height, num[i]));
   } 
   colorMode(HSB);
 } 
 
 
 void draw() { 
+  
+
   fill(155, 155);
   textSize(32);
   //text(s, 100, 100);
@@ -54,4 +57,15 @@ void draw() {
     //popMatrix();
     //}
   }
+
+  //if (record) {
+    //endRecord();
+    //record = false;
+  //}
+}
+
+void mousePressed() {
+  saveFrame("line-######.png");
+  //record = true;
+  //endRecord();
 }

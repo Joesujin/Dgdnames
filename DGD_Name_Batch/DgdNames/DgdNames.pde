@@ -6,15 +6,15 @@ ArrayList<Branch> branch = new ArrayList<Branch>();
 float division;
 
 void setup() { 
-  size(1000, 1000); 
+  size(1500, 1000); 
   background(0);
-  s = "abcdefghijklmnopqrstuvwxyz"; 
+  s = "Rahul Pegallapati"; 
   s = s.toLowerCase(); 
   c = new char[s.length()]; 
   num =new int[s.length()];
   //frameRate(24);
   noiseSeed(24031994);
-  division = width/(s.length()*2);
+  division = 1000/(s.length()*1.25);
 
 
   //for (float ang=0; ang<=360; ang+=(division)) {
@@ -29,7 +29,7 @@ void setup() {
     println(c[i], num[i]);
     //}
 
-    branch.add(new Branch((width/3)+division*i, height, num[i]));
+    branch.add(new Branch(200+division*i, height, num[i]));
   } 
   colorMode(HSB);
 } 
